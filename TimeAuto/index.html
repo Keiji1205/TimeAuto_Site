@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Raleway&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>TimeAuto</title>
+</head>
+<body>
+    <!-- Загрузка страницы -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
+          </div>
+      </div>
+    <script>
+        window.addEventListener('load', function() {
+        document.getElementById('preloader').remove();
+      });
+      </script>
+       <!-- Загрузка страницы -->
+
+       
+    <img class="mits" src="pic/auto_brand/mitsubishi_logo.webp">
+    <img class="toyo" src="pic/auto_brand/toyota_logo.webp">
+    <img class="audi" src="pic/auto_brand/audi_logo.webp">
+    <header>
+        <div class="header-content" >
+            <div class="header-icon">
+                <a href="index.html">
+                    <img src="pic/icon_auto.png">
+                    <h1>TimeAuto</h1>
+                </a>
+            </div>
+            <div class="nav-header">
+                <div class="auto-a">
+                    <a href="auto/index.php" style="color: #ff4b4b;">Машины</a>
+                </div>
+                <a href="company/index.html">О нас</a>
+                <a href="#">Отзывы</a>
+                <div class="btn-question-cont">
+                    <div class="btn-question" id="myBtn">
+                        <span>Задай вопрос</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="middle">
+        <div class="left">
+            <div>
+                <h1>Выбирай <span style="color: #ff4b4b;">авто</span>, едь <span style="color: #ff4b4b;">сегодня</span></h1>
+            </div>
+            <button class="btn"><a href="auto/index.php" style="text-decoration: none; color: white;">За машиной!</a></button>
+            <div class="stat">
+                <div class="rep">
+                    <h2>Наша репутация</h2>
+                </div>
+                <div class="circle"></div>
+                <div class="line"></div>
+                <div class="stat-info">
+                    <div class="stat-column">
+                        <h2>2г</h2>
+                        <span>на рынке</span>
+                    </div>
+                    <div class="stat-column">
+                        <h2>>6 000</h2>
+                        <span>клиентов</span>
+                    </div>
+                    <div class="stat-column">
+                        <h2>5</h2>
+                        <span>городов</span>
+                    </div>
+                </div>
+                <h4 class="text-info">
+                    Мы молоды, но уже успели зарекомендовать себя как надежный и современный сервис по аренде автомобилей. Мы знаем, как важно найти идеальное авто для любого случая, и предлагаем широкий выбор машин, от компактных городских до вместительных внедорожников.
+                </h4>
+            </div>
+        </div>
+        <div class="right">
+            <div style="position: relative;">
+                <img class="first-img" src="pic/main_page/auto_pic_1.webp">
+                <img class="second-img" src="pic/main_page/auto_pic_2.webp">
+            </div>
+        </div>
+    </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Заполните форму<br>и&nbsp;мы&nbsp;вам перезвоним</h2>
+      <div class="input-modal">
+        <form method="post" name="checkout"  autocomplete="on">
+          <div class="input-name"><input name="name"  type="text" placeholder="ФИО" id="name" maxlength="40">
+            <div class="false-name" id="false-name">Пустое поле</div>
+          </div>
+          <div class="input-name"><input name="phone" type="tel" placeholder="Номер телефона" id="phone" minlength="10">
+            <div class="false-phone" id="false-phone">Некорректный номер телефона</div>
+          </div>
+        </form>
+        <div><button id="send">Отправить</button></div>
+      </div>
+    </div>
+</div>
+  
+  <div id="myModal-2" class="modal-2">
+    <!-- Modal content -->
+    <div class="modal-content-2">
+      <span class="close-2">&times;</span>
+      <h2>Ваша заявка принята.<br>Мы позвоним в ближайшее время.</h2>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>

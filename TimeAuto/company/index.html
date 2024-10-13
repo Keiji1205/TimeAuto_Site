@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Raleway&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>TimeAuto</title>
+</head>
+<body>
+  <!-- Загрузка страницы -->
+  <div id="preloader">
+    <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+  </div>
+<script>
+    window.addEventListener('load', function() {
+    document.getElementById('preloader').remove();
+  });
+  </script>
+   <!-- Загрузка страницы -->
+    <header>
+        <div class="header-content">
+            <div class="header-icon" >
+                <a href="../index.html">
+                    <img src="../pic/icon_auto.png">
+                    <h1>TimeAuto</h1>
+                </a>
+            </div>
+            <div class="nav-header">
+                <div class="auto-a">
+                    <a href="../auto/index.php" style="color: #ff4b4b;">Машины</a>
+                </div>
+                <a href="../company/index.html">О нас</a>
+                <a href="#">Отзывы</a>
+                <div class="btn-question-cont">
+                    <div class="btn-question" id="myBtn">
+                        <span>Задай вопрос</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="up"></div>
+    <div class="middle">
+        <h1><span style="color: white;">Вот чем мы можем</span> <span style="color: #00ADB5;">похвастаться</span><span style="color: white;">.</span></h1>
+        <div class="column">
+            <div class="card">
+              <img src="../pic/icon/icon_auto.png">
+              <h2>Современный автопарк</h2>
+              <h3>TimeAuto гордится своим новым автопарком, состоящим из свежих и надежных автомобилей различных моделей и классов. Мы предлагаем автомобили с минимальным пробегом, оснащенные новейшими системами безопасности и комфорта.</h3>
+            </div>
+            <div class="card">
+              <img src="../pic/icon/start_icon.png">
+              <h2>Мощный старт</h2>
+              <h3>TimeAuto – молодая компания, которая стремительно завоевывает рынок аренды автомобилей. Благодаря гибкой ценовой политике и удобному сервису, за первый год работы компания уже заключила более 1000 успешных сделок.</h3>
+            </div>
+            <div class="card">
+              <img src="../pic/icon/icon_contract.png">
+              <h2>Современный подход к<br>сервису</h2>
+              <h3>Мы используем современные технологии для облегчения процесса аренды. Клиенты могут оформить заказ онлайн, выбрать удобное время получения и возврата авто, а также получить поддержку 24/7.</h3>
+            </div>
+            <div class="card">
+              <img src="../pic/icon/icon_family.png">
+              <h2>Доверие и ответственность</h2>
+              <h3> TimeAuto ставит во главу угла безопасность и комфорт своих клиентов. Все автомобили компании регулярно проходят технический осмотр, а в случае возникновения непредвиденных ситуаций, оперативная помощь гарантирована.</h3>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-pos">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+    </div>
+    
+    
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Заполните форму<br>и&nbsp;мы&nbsp;вам перезвоним</h2>
+      <div class="input-modal">
+        <form method="post" name="checkout"  autocomplete="on">
+          <div class="input-name"><input name="name"  type="text" placeholder="ФИО" id="name" maxlength="40">
+            <div class="false-name" id="false-name">Пустое поле</div>
+          </div>
+          <div class="input-name"><input name="phone" type="tel" placeholder="Номер телефона" id="phone" minlength="10">
+            <div class="false-phone" id="false-phone">Некорректный номер телефона</div>
+          </div>
+        </form>
+        <div><button id="send">Отправить</button></div>
+      </div>
+    </div>
+</div>
+  
+  <div id="myModal-2" class="modal-2">
+    <!-- Modal content -->
+    <div class="modal-content-2">
+      <span class="close-2">&times;</span>
+      <h2>Ваша заявка принята.<br>Мы позвоним в ближайшее время.</h2>
+    </div>
+  </div>
+  
+  <script src="scripts.js"></script>
+</body>
+</html>
