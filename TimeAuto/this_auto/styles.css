@@ -284,7 +284,7 @@ header{
 .arenda_content{
   background-color: #fefefe;
   margin-left:60px;
-  margin-top:60px; /* 15% from the top and centered */
+  margin-top:30px; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 25%; /* Could be more or less, depending on screen size */
@@ -302,7 +302,7 @@ header{
     font-weight: 700;
     font-style: normal;
 
-    margin-top:80px;
+    margin-bottom: 20px;
   }
   
   .input_arenda{
@@ -347,6 +347,72 @@ header{
     font-style: normal;
       border: none;
   }
+  .false-name_2{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+  .false-phone_2{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+  .pasport_nomer_text{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+  .pasport_data_text{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+  .pasport_kod_text{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+  .pasport_issued_text{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
 
   .auto_info{
     font-size: 15px;
@@ -355,7 +421,7 @@ header{
     font-weight: 700;
     font-style: normal;
     border-color: #000;
-    margin-top:10px;
+    margin-bottom:20px;
   }
 
 .input-info{
