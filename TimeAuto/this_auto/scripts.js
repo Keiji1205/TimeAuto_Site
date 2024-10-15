@@ -155,8 +155,9 @@ window.onclick = function(event) {
 }
 
 
-var send_arenda = document.getElementById("send_arenda");
+
 //аренда авто
+var send_arenda = document.getElementById("send_arenda");
 var false_phone_2 = document.getElementById("false_phone_2");
 var false_name_2 = document.getElementById("false_name_2");
 var pasport_nomer_text = document.getElementById("pasport_nomer_text");
@@ -193,10 +194,15 @@ send_arenda.onclick = function(){
   var carPrice = document.getElementById("car-price");
   var carPrice = carPrice.dataset.price;
 
-  
- 
         
-  if (1==1){
+  if (
+    valid && // Проверка телефона
+    name_arenda !== '' && // Проверка имени
+    pasport_nomer !== '' && // Проверка номера паспорта
+    pasport_data !== '' && // Проверка даты выдачи паспорта
+    pasport_kod !== '' && // Проверка кода подразделения
+    pasport_issued !== '' // Проверка места выдачи паспорта
+  ){
     false_name_2.style.display = "none";
     false_phone_2.style.display = "none";
     pasport_nomer_text.style.display = "none";
@@ -269,3 +275,114 @@ send_arenda.onclick = function(){
     }
   }
 }
+
+
+//Отзыв
+var feedback_send = document.getElementById("feedback_send");
+
+var false_phone_feedback = document.getElementById("false_phone_feedback");
+var false_name_feedback = document.getElementById("false_name_feedback");
+var feedback_input_text = document.getElementById("feedback_input_text");
+
+
+feedback_send.onclick = function(){
+
+  var phone_feedback = document.getElementsByName('phone_feedback')[0].value
+  var re = /^\+?(7|8)?\s?\(?\d{3}\)?\s?\d{3}-?\s?\d{2}-?\s?\d{2}/; 
+  var name_feedback = document.getElementsByName('name_feedback')[0].value
+
+  var feedback_input = document.getElementsByName('feedback_input')[0].value
+ 
+  var valid = re.test(phone_feedback);
+  
+  var car = document.getElementById("car");
+  var car = car.dataset.price;
+
+  var yeat_release = document.getElementById("yeat_release");
+  var yeat_release = yeat_release.dataset.price;
+
+  var mileage = document.getElementById("mileage");
+  var mileage = mileage.dataset.price;
+
+  var equipment = document.getElementById("mileage");
+  var equipment = equipment.dataset.price;
+
+  var carPrice = document.getElementById("car-price");
+  var carPrice = carPrice.dataset.price;
+
+  var id_auto = document.getElementById("id_auto");
+  var id_auto = id_auto.dataset.price;
+
+        
+  if (
+    valid && // Проверка телефона
+    name_feedback !== '' && // Проверка имени
+    feedback_input !== ''  // Проверка номера паспорта
+  ){
+    false_name_feedback.style.display = "none";
+    false_phone_feedback.style.display = "none";
+    feedback_input_text.style.display = "none";
+
+    let date = {
+      'name_feedback': $('[name="name_feedback"]').val(),
+      'phone_feedback': '8' + $('[name="phone_feedback"]').val().replace(/[^0-9]/g, '').slice(1), 
+      'feedback_input': $('[name="feedback_input"]').val(),
+
+      'car': document.querySelector('[id="car"]').dataset.price,
+      'yeat_release': document.querySelector('[id="yeat_release"]').dataset.price, 
+      'mileage': document.querySelector('[id="mileage"]').dataset.price,
+      'equipment': document.querySelector('[id="equipment"]').dataset.price,
+      'carPrice': document.querySelector('[id="car-price"]').dataset.price,
+      'id_auto': document.querySelector('[id="id_auto"]').dataset.price 
+    }
+    console.log(date);
+    $.post('feedback.php', date, function(response){
+      if(response==1){
+        modal_2.style.display = "block";
+        return false;
+      }else{
+        alert('На сервере ошибка, попробуйте позже')
+      }
+  })
+  }
+  else{
+    if(!valid){
+      false_phone_feedback.style.display = "block";
+    }
+    else{
+      false_phone_feedback.style.display = "none";
+    }
+    if(name_feedback==''){
+      false_name_feedback.style.display = "block";
+    }  
+    else{
+      false_name_feedback.style.display = "none";
+    }
+     if(feedback_input==''){
+      feedback_input_text.style.display = "block";
+    }  
+    else{
+      feedback_input_text.style.display = "none";
+    }
+  }
+}
+
+
+const feedback_input = document.getElementById('feedback_input');
+const countElement = document.getElementById('count');
+const maxChars = 300; // Максимальное количество символов
+
+feedback_input.addEventListener('input', function() {
+  const currentChars = this.value.length;
+  countElement.textContent = `${currentChars}/${maxChars}`;
+});
+
+feedback_input.addEventListener('input', function() {
+  const currentChars = this.value.length;
+  if (currentChars >= maxChars) {
+    countElement.style.color = 'red'; // Красный цвет, если предел достигнут
+  } else {
+    countElement.style.color = 'black'; // Черный цвет по умолчанию
+  }
+  countElement.textContent = `${currentChars}/${maxChars}`;
+});

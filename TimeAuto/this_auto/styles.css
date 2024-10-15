@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 15px; /* Ширина полосы прокрутки */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff4b4b; /* Цвет ползунка */
+  border-radius: 5px; /* Радиус закругления */
+}
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Цвет фона */
+}
+
 body{
   background-color: #353535;
 }
@@ -281,9 +293,15 @@ header{
   max-width:800px;
 }
 
+.form_container{
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  margin-bottom: 60px;
+}
+
 .arenda_content{
   background-color: #fefefe;
-  margin-left:60px;
   margin-top:30px; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
@@ -310,25 +328,49 @@ header{
     margin-top: 50px;
   }
 
+  .input_feedback{
+    display: inline-block;
+    margin-top: 50px;
+  }
 
 
   .input-arenda-name{
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
+    position: relative;
   } 
   
   .input_arenda input{
     width: 400px;
     height: 69px;
     border-radius: 14px;
+    border: 2px solid black;
+
     font-size: 18px;
     font-family: "Comfortaa", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+
     padding-left: 30px;
-    border-color: #000;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .feedback_all_input{
+    width: 400px;
+    height: 69px;
+    border-radius: 14px;
+    border: 2px solid black;
+
+    font-size: 18px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+
+    padding-left: 30px;
     outline: none;
     cursor: pointer;
   }
@@ -347,6 +389,22 @@ header{
     font-style: normal;
       border: none;
   }
+
+  .input_feedback button{
+    cursor: pointer;
+    color: white;
+    background-color: #ff4b4b;
+    border-radius: 14px;
+    width: 400px;
+    height: 69px;
+    font-size: 20px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border: none;
+  }
+
   .false-name_2{
     margin-top: 80px;
     font-size: 15px;
@@ -431,6 +489,70 @@ header{
     flex-direction:column;
   } 
 
+  .false_name_feedback{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+
+  .false_phone_feedback{
+    margin-top: 80px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+
+  .feedback_input_text{
+    margin-top: 275px;
+    font-size: 15px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    border-color: #000;
+    display: none;
+    position: absolute;
+  }
+
+  .count{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+  }
+
+  .feedback_input{
+    width: 400px;
+    height: 264px;
+
+    border-radius: 14px;
+    border: 2px solid black;
+
+    font-size: 18px;
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+
+    padding: 30px;
+    outline: none;
+    cursor: pointer;
+    resize: none;
+  }
+
 .modal {
     z-index: 4;
     display: none; /* Hidden by default */
@@ -456,6 +578,7 @@ header{
     border: none;
     text-align: center;
     z-index: 5;
+    
   }
   
   /* The Close Button */
