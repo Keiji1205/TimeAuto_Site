@@ -51,7 +51,7 @@
                     <a href="../auto/index.php" style="color: #ff4b4b;">Машины</a>
                 </div>
                 <a href="../company/index.html">О нас</a>
-                <a href="#">Отзывы</a>
+                <a href="../feedback/index.php">Отзывы</a>
                 <div class="btn-question-cont">
                     <div class="btn-question" id="myBtn">
                         <span>Задай вопрос</span>
