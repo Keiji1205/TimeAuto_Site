@@ -341,7 +341,6 @@ header{
     color: white;
     display: inline-block;
     padding: 5px;
-    font-weight: 500;
     object-fit: contain;
 
     word-wrap: break-word;
@@ -350,6 +349,7 @@ header{
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+    font-size: 20px;
   }
 
 
