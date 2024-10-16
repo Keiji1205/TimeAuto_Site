@@ -174,7 +174,7 @@
                   echo "<div id='car-price' class='auto_info' data-price='". $car['price']."';>Цена в сутки: " . $car["price"] . "</div>";
                 echo "</div>";
               echo "</form>";   
-              echo "<div><button id='feedback_send'>Арендовать</button></div>";
+              echo "<div><button id='feedback_send'>Оставить отзыв</button></div>";
             echo "</div>";
             echo "</div>";
           echo "</div>";
