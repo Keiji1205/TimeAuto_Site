@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.btn{
+    width: 144px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: top;
+
+    margin-top: 90px;
+ 
+}
+
+.container button{
+    width: 144px;
+    height: 30px;
+    cursor: pointer;
+    float: right;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    float: right;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid grey;
+    max-width: 400px;
+}
+
+input{
+    width:20px;
+    height:20px;
+}
