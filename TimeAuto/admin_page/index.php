@@ -32,7 +32,7 @@
     <h1>Добро пожаловать в Admin-page</h1>
     <form method="post" name="checkout"  autocomplete="on">
         <input placeholder="Логин" class="input" id="username">
-        <input placeholder="Пароль" class="input" id="password">
+        <input placeholder="Пароль" class="input" type="password" id="password">
     </form>
     <button id="send_password" class="btn">Отправить</button>
 </div>
