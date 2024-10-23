@@ -1,7 +1,6 @@
 <?php
 // Подключение к базе данных
-$pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include '../db.php';
 
 // Подготовка запроса
 $stmt = $pdo->prepare('INSERT INTO arenda(name, phone, pasport_nomer, pasport_data, pasport_kod, pasport_issued, car, yeat_release, mileage, equipment, price) VALUES(:name, :phone, :pasport_nomer, :pasport_data, :pasport_kod, :pasport_issued, :car, :yeat_release, :mileage, :equipment, :price)');

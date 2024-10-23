@@ -2,8 +2,7 @@
 function getAutosFromDatabase() {
   try {
     // Подключение к базе данных
-    $pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include '../db.php';
 
     // Запрос к базе данных
     $sql = "SELECT * FROM all_car";

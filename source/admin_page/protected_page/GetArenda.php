@@ -1,19 +1,18 @@
 <?
-function getFeedbackFromDatabase() {
+function getArendaFromDatabase() {
   try {
     // Подключение к базе данных
-    $pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include '../db.php';
 
     // Запрос к базе данных
-    $sql = "SELECT * FROM feedback";
+    $sql = "SELECT * FROM arenda";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
     // Получение данных из результата запроса
-    $feedback = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $arenda = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    return $feedback;
+    return $arenda;
 
   } catch(PDOException $e) {
     echo "Ошибка подключения: " . $e->getMessage();

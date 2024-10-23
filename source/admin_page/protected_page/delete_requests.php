@@ -1,6 +1,5 @@
 <?
-$pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include '../db.php';
 
 $data = json_decode($_POST['data']);
 
@@ -8,7 +7,7 @@ if (is_array($data)) {
   // Перебираем массив ID
   foreach ($data as $id) {
     // Запрос на удаление строки из таблицы
-    $sql = "DELETE FROM arenda WHERE id = $id";
+    $sql = "DELETE FROM requests WHERE id = $id";
 
     // Prepare the statement
     $stmt = $pdo->prepare($sql); 

@@ -1,7 +1,6 @@
 <?php
-// Подключение к базе данных
-$pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Подключение к базе данных с указанием порта
+include 'db.php';
 
 // Подготовка запроса
 $stmt = $pdo->prepare('INSERT INTO requests(name, phone) VALUES(:name, :phone)');

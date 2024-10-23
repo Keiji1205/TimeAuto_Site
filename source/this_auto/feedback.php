@@ -1,7 +1,6 @@
 <?php
 // Подключение к базе данных
-$pdo = new PDO("mysql:host=localhost;dbname=kirillwor3", 'kirillwor3', '73HotCat91');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include '../db.php';
 
 // Подготовка запроса
 $stmt = $pdo->prepare('INSERT INTO feedback(name, phone, feedback, car, yeat_release, mileage, equipment, price, id_auto) VALUES(:name, :phone, :feedback, :car, :yeat_release, :mileage, :equipment, :price, :id_auto)');
