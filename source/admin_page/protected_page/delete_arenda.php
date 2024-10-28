@@ -1,5 +1,5 @@
 <?
-include '../db.php';
+ include __DIR__ . '/../../db.php';
 
 $data = json_decode($_POST['data']);
 

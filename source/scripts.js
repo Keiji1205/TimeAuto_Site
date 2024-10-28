@@ -62,7 +62,7 @@ send.onclick = function(){
         console.log(data);
         return false;
       }else{
-        alert('На сервере ошибка, попробуйте позже')
+        alert('На сервере ошибка')
         modal.style.display = "none";
       }
   })

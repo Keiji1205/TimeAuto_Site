@@ -2,7 +2,7 @@
 function getArendaFromDatabase() {
   try {
     // Подключение к базе данных
-    include '../db.php';
+    include __DIR__ . '/../../db.php';
 
     // Запрос к базе данных
     $sql = "SELECT * FROM arenda";

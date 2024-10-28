@@ -1,6 +1,5 @@
 <?php
 // db.php
-
 try {
     
     $pdo = new PDO("mysql:host=db;dbname=kirillwor3;port=3306", 'user', '73HotCat91');

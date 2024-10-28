@@ -84,8 +84,8 @@
         echo "</div>";
         echo "<div class='key_info'>";
           echo "<h2>" . $car["horsepower"] . "<br><span>Лошадиных сил</span></h2>";
-          echo "<h2>" . $car["racing"] . "<br><span>0-100 км/ч</span></h2>";
-          echo "<h2>" . $car["maximum_speed"] . "<br><span>Максимальная скорость</span></h2>";
+          echo "<h2>За " . $car["racing"] . "с<br><span>0-100 км/ч</span></h2>";
+          echo "<h2>" . $car["maximum_speed"] . "км/ч<br><span>Максимальная скорость</span></h2>";
         echo "</div>";
         echo "<div class='description'>";
           echo "<h1>" . $car["description"] . "</h2>";

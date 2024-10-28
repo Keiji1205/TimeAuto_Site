@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (isset($_SESSION['username'])) {
+    // Сессия активна, выводим приветствие
+    $username = $_SESSION['username']; // Retrieve the username from the session
+    echo "<script>alert('Добро пожаловать, " . $username . "!');</script>";
+} else {
+    // Сессия не активна, перенаправляем на страницу входа
+    header('Location: ../index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,19 +34,6 @@
     <title>TimeAuto_Admin</title>
 </head>
 <body>
-<?php
-
-session_start();
-if (isset($_SESSION['username'])) {
-    // Сессия активна, выводим приветствие
-    echo "<script>alert('Добро пожаловать, " . $username . "!');</script>";
-} else {
-    // Сессия не активна, перенаправляем на страницу входа
-    header('Location: ../index.php');
-    exit;
-}
-?>
-
 <div class="nav_btn">
   <button class="btn" type="submit" id="requests">Заявки</button>
   <button class="btn" type="submit" id="arenda">Аренда</button>
