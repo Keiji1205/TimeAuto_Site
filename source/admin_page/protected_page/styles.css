@@ -40,7 +40,18 @@ table {
     float: right;
 }
 
-th, td {
+td {
+    padding: 10px;
+    border: 1px solid grey;
+    max-width: 400px;
+}
+
+th {
+    position: sticky; /* Делаем заголовок "липким" */
+    top: 0; /* Прикрепляем к верхней части контейнера */
+    background-color: #f2f2f2; /* Цвет фона заголовка */
+    z-index: 10; /* Обеспечивает, что заголовок будет выше других элементов */
+    border-bottom: 2px solid #ccc; /* Добавляем нижнюю границу для отделения */
     padding: 10px;
     border: 1px solid grey;
     max-width: 400px;
@@ -49,4 +60,15 @@ th, td {
 input{
     width:20px;
     height:20px;
+}
+
+
+#carTable textarea {
+    width: 100%; /* Растягиваем текстовые области на всю ширину ячейки */
+    box-sizing: border-box; /* Учитываем границы и отступы в ширине */
+    padding: 8px; /* Добавляем отступы внутри текстовой области */
+    border: 1px solid #ccc; /* Граница текстовой области */
+    border-radius: 4px; /* Закругленные углы */
+    min-height: 340px; /* Минимальная высота текстовой области */
+    resize: vertical; /* Позволяем изменять высоту текстовой области */
 }
