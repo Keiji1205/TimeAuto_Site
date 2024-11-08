@@ -146,6 +146,7 @@ if (isset($_SESSION['username'])) {
   <div id="car_div" style="display: none;"> 
   <button type="button" id="delete_car">Редактировать заявку</button>
   <button type="button" id="confirm_edit" style="display: none;">Подтвердить изменения</button>
+  <button id="cancel_edit" style="display: none;">Отмена</button>
     <table id="carTable">
       <tr>
         <th>id</th>
@@ -163,7 +164,7 @@ if (isset($_SESSION['username'])) {
         <th>Салон</th>
         <th>Отличия</th>
         <th>Описание кузова</th>
-        <th>Удаление заявки</th>
+        <th>Выбор заявки</th>
       </tr>
       <?php
         require_once 'GetCarInfo.php'; // Подключение к файлу с PHP кодом
@@ -187,7 +188,7 @@ if (isset($_SESSION['username'])) {
               echo "<td>".$row_car["salon"]."</td>";
               echo "<td>".$row_car["difference"]."</td>";
               echo "<td>".$row_car["body_description"]."</td>";
-              echo "<td><input type='checkbox' name='selected_rows[]'></td>";
+              echo "<td><input type='radio' name='selected_rows[]'></td>";
             echo "</tr>";      
             }
         }

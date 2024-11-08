@@ -1,55 +1,66 @@
 <?php
 try {
+    // Подключение к базе данных
     include __DIR__ . '/../../db.php';
 
-    if (!$conn) {
-        throw new Exception("Ошибка подключения к базе данных.");
+    // Получение данных из POST-запроса
+    $data = json_decode($_POST['data'], true);
+
+    // Подготовка запросов для обновления данных
+    $updateAllCarQuery = "UPDATE all_car SET 
+        car_brand = :car_brand,
+        model = :model,
+        yeat_release = :year_release,
+        mileage = :mileage,
+        equipment = :equipment,
+        price = :price 
+        WHERE id = :id";
+
+    $updateThisAutoQuery = "UPDATE this_auto SET 
+        type_body = :type_body,
+        horsepower = :horsepower,
+        racing = :racing,
+        maximum_speed = :maximum_speed,
+        description = :description,
+        salon = :salon,
+        difference = :difference,
+        body_description = :body_description,
+        cost = :cost 
+        WHERE id_auto = :id_auto"; // Исправлено имя параметра
+
+    // Подготовка запросов
+    $stmt1 = $pdo->prepare($updateAllCarQuery);
+    $stmt2 = $pdo->prepare($updateThisAutoQuery);
+
+    foreach ($data as $row) {
+        // Обновление таблицы all_car
+        $stmt1->execute([
+            ':car_brand' => $row['car_brand'],
+            ':model' => $row['model'],
+            ':year_release' => $row['year_release'],
+            ':mileage' => $row['mileage'],
+            ':equipment' => $row['equipment'],
+            ':price' => $row['price'],
+            ':id' => $row['id']
+        ]);
+
+        // Обновление таблицы this_auto
+        $stmt2->execute([
+            ':type_body' => $row['type_body'],
+            ':horsepower' => $row['horsepower'],
+            ':racing' => $row['racing'],
+            ':maximum_speed' => $row['maximum_speed'],
+            ':description' => $row['description'],
+            ':salon' => $row['salon'],
+            ':difference' => $row['difference'],
+            ':body_description' => $row['body_description'],
+            ':cost' => $row['price'], // Предполагается, что цена совпадает с ценой в all_car
+            ':id_auto' => $row['id']  // Используем тот же ID для связи между таблицами
+        ]);
     }
 
-    if (isset($_POST['data'])) {
-        $data = json_decode($_POST['data'], true);
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            echo "Ошибка декодирования JSON: " . json_last_error_msg();
-            exit;
-        }
-
-        if (!empty($data)) {
-            foreach ($data as $row) {
-                $id = $conn->real_escape_string($row['id']);
-                
-                // Создаем строку для обновления
-                $updateFields = [];
-                foreach ($row as $key => $value) {
-                    if ($key !== 'id') { // Пропускаем ID
-                        $value = $conn->real_escape_string($value);
-                        $updateFields[] = "$key = '$value'";
-                    }
-                }
-                
-                // Формируем SQL-запрос для обновления
-                $sql = "UPDATE this_auto SET " . implode(', ', $updateFields) . " WHERE id = '$id'";
-                
-                // Логируем запрос для отладки
-                file_put_contents('log.txt', "SQL: $sql\n", FILE_APPEND);
-
-                // Выполняем запрос
-                if (!$conn->query($sql)) {
-                    echo "Ошибка выполнения запроса: " . $conn->error;
-                    exit;
-                }
-            }
-            
-            echo 1; // Успешное выполнение
-        } else {
-            echo 'Массив data пуст.';
-            exit; // Нет данных для обновления
-        }
-    } else {
-        echo 'Нет данных в POST-запросе.';
-    }
-
-} catch(Exception $e) {
-    echo 'Ошибка: ' . $e->getMessage();
+    echo 1; // Успешное обновление
+} catch (PDOException $e) {
+    echo "Ошибка: " . $e->getMessage();
 }
 ?>
