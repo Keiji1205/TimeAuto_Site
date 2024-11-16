@@ -64,11 +64,27 @@ input{
 
 
 #carTable textarea {
-    width: 100%; /* Растягиваем текстовые области на всю ширину ячейки */
     box-sizing: border-box; /* Учитываем границы и отступы в ширине */
     padding: 8px; /* Добавляем отступы внутри текстовой области */
     border: 1px solid #ccc; /* Граница текстовой области */
     border-radius: 4px; /* Закругленные углы */
-    min-height: 340px; /* Минимальная высота текстовой области */
-    resize: vertical; /* Позволяем изменять высоту текстовой области */
+}
+
+.newCar_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input_newCar{
+    width: 600px;
+    height: auto;
+    min-height: 40px;
+    max-height: 200px;
+    box-sizing: border-box;
+    resize: none;
+    overflow: hidden;
+    padding: 10px;
+    margin: 10px;
+    font-size: 18px;
 }

@@ -39,6 +39,7 @@ if (isset($_SESSION['username'])) {
   <button class="btn" type="submit" id="arenda">Аренда</button>
   <button class="btn" type="submit" id="feedback">Отзывы</button>
   <button class="btn" type="submit" id="car">Машины</button>
+  <button class="btn" type="submit" id="newCar">Добавить авто</button>
 </div>
 <div class="container">
   <div id="requests_div" style="display: none;">
@@ -195,6 +196,25 @@ if (isset($_SESSION['username'])) {
       ?>
     </table>
   </div>
+
+  <div id="newCar_div" class="newCar_div" style="display: none;"> 
+    <textarea placeholder="марка" class="input_newCar" id="car_brand" rows="1"></textarea>
+    <textarea placeholder="модель" class="input_newCar" id="model" rows="1"></textarea>
+    <textarea placeholder="тип кузов" class="input_newCar" id="type_body" rows="1"></textarea>
+    <textarea placeholder="лошадинных сил" class="input_newCar" id="horsepower" rows="1"></textarea>
+    <textarea placeholder="разгон до 100км/ч" class="input_newCar" id="racing" rows="1"></textarea>
+    <textarea placeholder="максимальная скорость" class="input_newCar" id="maximum_speed" rows="1"></textarea>
+    <textarea placeholder="год производства" class="input_newCar" id="year_release" rows="1"></textarea>
+    <textarea placeholder="пробег" class="input_newCar" id="mileage" rows="1"></textarea>
+    <textarea placeholder="комплектация" class="input_newCar" id="equipment" rows="1"></textarea>
+    <textarea placeholder="цена" class="input_newCar" id="price" rows="1"></textarea>
+    <textarea placeholder="описание машины" class="input_newCar" id="description" rows="3"></textarea>
+    <textarea placeholder="описание салона" class="input_newCar" id="salon" rows="3"></textarea>
+    <textarea placeholder="отличия" class="input_newCar" id="difference" rows="3"></textarea>
+    <textarea placeholder="описание кузова" class="input_newCar" id="body_description" rows="3"></textarea>
+    <input type="file" name="fileToUpload" id="fileToUpload" required>
+    <button type="button" id="NewCar">Добавить машину</button>
+</div>
 
 </div>
   <script src="scripts.js"></script>

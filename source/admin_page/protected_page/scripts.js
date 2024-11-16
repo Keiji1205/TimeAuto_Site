@@ -1,7 +1,25 @@
+function autoGrow(el) {
+  el.style.height = 'auto'; // Сбрасываем высоту
+  el.style.height = el.scrollHeight + 'px'; // Устанавливаем новую высоту
+}
+
+// Получаем все textarea с классом input_newCar
+const textareasNewCar = document.querySelectorAll('.input_newCar');
+
+// Добавляем обработчик события input для каждого textarea
+textareasNewCar.forEach(textarea => {
+  textarea.addEventListener('input', function() {
+      autoGrow(this); // Вызываем функцию при вводе текста
+  });
+});
+
+
+
 var requests_btn = document.getElementById("requests");
 var arenda_btn = document.getElementById("arenda");
 var feedback_btn = document.getElementById("feedback");
 var car_btn = document.getElementById("car");
+var newCar_btn = document.getElementById("newCar");
 
 var requests_div = document.getElementById("requests_div");
 
@@ -11,6 +29,7 @@ requests_btn.onclick = function(){
   feedback_div.style.display="none";
   arenda_div.style.display="none";
   car_div.style.display="none";
+  newCar_div.style.display="none";
 }
 
 var feedback_div = document.getElementById("feedback_div");
@@ -21,6 +40,7 @@ feedback_btn.onclick = function(){
   requests_div.style.display="none";
   arenda_div.style.display="none";
   car_div.style.display="none";
+  newCar_div.style.display="none";
 }
 
 var arenda_div = document.getElementById("arenda_div");
@@ -31,6 +51,7 @@ arenda_btn.onclick = function(){
   requests_div.style.display="none";
   feedback_div.style.display="none";
   car_div.style.display="none";
+  newCar_div.style.display="none";
 }
 
 var car_div = document.getElementById("car_div");
@@ -41,7 +62,20 @@ car_btn.onclick = function(){
   requests_div.style.display="none";
   feedback_div.style.display="none";
   arenda_div.style.display="none";
+  newCar_div.style.display="none";
 }
+
+var newCar_div = document.getElementById("newCar_div");
+
+newCar_btn.onclick = function(){
+  newCar_div.style.display="flex";
+
+  requests_div.style.display="none";
+  feedback_div.style.display="none";
+  arenda_div.style.display="none";
+  car_div.style.display="none";
+}
+
 
 
 var delete_requests = document.getElementById("delete_requests");
@@ -186,9 +220,10 @@ document.getElementById("delete_car").onclick = function() {
           if (index !== 0 && index !== cells.length - 1) { // Пропускаем первую и последнюю ячейку
               const textarea = document.createElement('textarea');
               textarea.value = cell.textContent; // Устанавливаем текущее значение
+              textarea.id = "textareaCar"
               textarea.style.width = '100%'; // Устанавливаем ширину
               textarea.style.height = 'auto'; // Автоматическая высота
-              textarea.style.resize = 'vertical'; // Позволяем изменять высоту
+              textarea.style.resize = 'none'; // Позволяем изменять высоту
               cell.innerHTML = ''; // Очищаем ячейку
               cell.appendChild(textarea); // Добавляем textarea в ячейку
           }
@@ -289,3 +324,47 @@ document.getElementById("confirm_edit").onclick = function() {
       }
   });
 }
+
+// Добавляем обработчик события на кнопку "NewCar"
+document.getElementById('NewCar').addEventListener('click', function() {
+  // Сбор данных из текстовых областей и поля ввода даты
+  const carData = {
+      brand: document.getElementById('car_brand').value.trim(), // Убираем лишние пробелы
+      model: document.getElementById('model').value.trim(),
+      type_body: document.getElementById('type_body').value.trim(),
+      horsepower: document.getElementById('horsepower').value.trim(),
+      racing: document.getElementById('racing').value.trim(),
+      maximum_speed: document.getElementById('maximum_speed').value.trim(),
+      year_release: document.getElementById('year_release').value, // Получаем значение даты
+      mileage: document.getElementById('mileage').value.trim(),
+      equipment: document.getElementById('equipment').value.trim(),
+      price: document.getElementById('price').value.trim(),
+      description: document.getElementById('description').value.trim(),
+      salon: document.getElementById('salon').value.trim(),
+      difference: document.getElementById('difference').value.trim(),
+      body_description: document.getElementById('body_description').value.trim()
+  };
+
+  // Логирование собранных данных для отладки
+  console.log(carData);
+
+  // Отправка данных на сервер через AJAX
+  $.ajax({
+      url: 'NewCar.php', // URL скрипта на сервере
+      type: 'POST', // Метод отправки данных
+      data: { carData: JSON.stringify(carData) }, // Данные, которые мы отправляем
+      success: function(response) {
+          // Обработка успешного ответа от сервера
+          if (response == 1) {
+              location.reload(true); // Перезагрузка страницы при успешном добавлении
+          } else {
+              alert('На сервере ошибка, попробуйте позже'); // Сообщение об ошибке
+          }
+      },
+      error: function(error) {
+          // Обработка ошибки при выполнении запроса
+          console.log('Ошибка на сервере:', error);
+          alert('На сервере ошибка, попробуйте позже'); // Сообщение об ошибке
+      }
+  });
+});
