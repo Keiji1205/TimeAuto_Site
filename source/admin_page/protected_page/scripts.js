@@ -325,17 +325,16 @@ document.getElementById("confirm_edit").onclick = function() {
   });
 }
 
-// Добавляем обработчик события на кнопку "NewCar"
+
 document.getElementById('NewCar').addEventListener('click', function() {
-  // Сбор данных из текстовых областей и поля ввода даты
   const carData = {
-      brand: document.getElementById('car_brand').value.trim(), // Убираем лишние пробелы
+      brand: document.getElementById('car_brand').value.trim(),
       model: document.getElementById('model').value.trim(),
       type_body: document.getElementById('type_body').value.trim(),
       horsepower: document.getElementById('horsepower').value.trim(),
       racing: document.getElementById('racing').value.trim(),
       maximum_speed: document.getElementById('maximum_speed').value.trim(),
-      year_release: document.getElementById('year_release').value, // Получаем значение даты
+      year_release: document.getElementById('year_release').value,
       mileage: document.getElementById('mileage').value.trim(),
       equipment: document.getElementById('equipment').value.trim(),
       price: document.getElementById('price').value.trim(),
@@ -345,16 +344,40 @@ document.getElementById('NewCar').addEventListener('click', function() {
       body_description: document.getElementById('body_description').value.trim()
   };
 
-  // Логирование собранных данных для отладки
-  console.log(carData);
+  // Получение файлов для загрузки
+  const fileInputFront = document.getElementById('fileToUploadFront');
+  const filesFront = fileInputFront.files;
+
+  const fileInputBack = document.getElementById('fileToUploadBack');
+  const filesBack = fileInputBack.files;
+
+  if (filesFront.length === 0 || filesBack.length === 0) {
+      alert("Пожалуйста, выберите файлы для загрузки.");
+      return;
+  }
+
+  // Создание объекта FormData
+  const formData = new FormData();
+  formData.append('carData', JSON.stringify(carData)); // Добавляем данные о машине
+
+  // Добавляем первые 2 файла
+  for (let i = 0; i < filesFront.length; i++) {
+      formData.append('fileToUploadFront[]', filesFront[i]);
+  }
+
+  // Добавляем остальные 4 файла
+  for (let i = 0; i < filesBack.length; i++) {
+      formData.append('fileToUploadBack[]', filesBack[i]);
+  }
 
   // Отправка данных на сервер через AJAX
   $.ajax({
-      url: 'NewCar.php', // URL скрипта на сервере
-      type: 'POST', // Метод отправки данных
-      data: { carData: JSON.stringify(carData) }, // Данные, которые мы отправляем
+      url: 'NewCar.php',
+      type: 'POST',
+      data: formData,
+      processData: false, // Не обрабатывать данные
+      contentType: false, // Не устанавливать заголовок типа контента
       success: function(response) {
-          // Обработка успешного ответа от сервера
           if (response == 1) {
               location.reload(true); // Перезагрузка страницы при успешном добавлении
           } else {
@@ -362,7 +385,6 @@ document.getElementById('NewCar').addEventListener('click', function() {
           }
       },
       error: function(error) {
-          // Обработка ошибки при выполнении запроса
           console.log('Ошибка на сервере:', error);
           alert('На сервере ошибка, попробуйте позже'); // Сообщение об ошибке
       }

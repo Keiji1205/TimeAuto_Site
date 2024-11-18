@@ -1,7 +1,7 @@
 <?php
 
-    include __DIR__ . '/../../db.php';
-try{
+include __DIR__ . '/../../db.php';
+try {
     if (!isset($_POST['carData'])) { 
         throw new Exception("Данные не переданы");
     }
@@ -12,66 +12,94 @@ try{
         throw new Exception("Ошибка декодирования JSON");
     }
     
-    $basePath = "../../this_auto/pic"; // Базовый путь
+    $basePathFront = "../../auto/pic"; // Базовый путь
+    $basePathBack = "../../this_auto/pic"; // Базовый путь
     $folderBrand = $data['brand']; // Имя папки
     $folderModel = $data['model']; // Имя папки
 
-    // Полный путь
-    $fullPath = $basePath . '/' . $folderBrand . '/' . $folderModel; 
+    // Полный путь к папке для загрузки
+    $fullPathBack = $basePathBack . '/' . $folderBrand . '/' . $folderModel; 
 
-    if (!file_exists($fullPath)) {
-        mkdir($fullPath, 0777, true); // Создание папки
-        echo "Папка '$fullPath' создана.";
-    } else {
-        echo "Папка '$fullPath' уже существует.";
-    }
+    if (!file_exists($fullPathBack)) {
+         mkdir($fullPathBack, 0777, true); // Создание папки для задних изображений
+     }
+     
+     // Подготовка запросов для обновления данных
+     $InsertAllCarQuery = "INSERT INTO all_car(car_brand, model, yeat_release, mileage, equipment, price, photo_front, photo_back) VALUES(:car_brand, :model, :yeat_release, :mileage, :equipment, :price, :photo_front, :photo_back)";  
 
+     $InsertThisAutoQuery = "INSERT INTO this_auto(id_auto, type_body, horsepower, racing, maximum_speed, description, salon, difference, body_description, cost, photo_preview, photo_salon, general_view, sport) VALUES(:id_auto, :type_body, :horsepower, :racing, :maximum_speed, :description, :salon, :difference, :body_description, :cost, :photo_preview, :photo_salon, :general_view, :sport)";  
+ 
+     // Подготовка запросов
+     $stmt1 = $pdo->prepare($InsertAllCarQuery);
 
-    // Подготовка запросов для обновления данных
-    $InsertAllCarQuery = "INSERT INTO all_car(car_brand, model, yeat_release, mileage, equipment, price, photo_front, photo_back) VALUES(:car_brand, :model, :yeat_release, :mileage, :equipment, :price, :photo_front, :photo_back)";  
+     // Обновление таблицы all_car
+     $stmt1->execute([
+         ':car_brand' => $data['brand'],
+         ':model' => $data['model'],
+         ':yeat_release' => $data['year_release'],
+         ':mileage' => $data['mileage'],
+         ':equipment' => $data['equipment'],
+         ':price' => $data['price'],
+         ':photo_front' => $data['brand'].'_'.$data['model'].'_front.jpg',
+         ':photo_back' => $data['brand'].'_'.$data['model'].'_back.jpg'
+     ]);
+  
+     // Получаем последний вставленный ID из таблицы all_car
+     $lastId = $pdo->lastInsertId();
 
-    $InsertThisAutoQuery = "INSERT INTO this_auto(id_auto, type_body, horsepower, racing, maximum_speed, description, salon, difference, body_description, cost, photo_preview, photo_salon, general_view, sport) VALUES(:id_auto, :type_body, :horsepower, :racing, :maximum_speed, :description, :salon, :difference, :body_description, :cost, :photo_preview, :photo_salon, :general_view, :sport)";  
-   
-    // Подготовка запросов
-    $stmt1 = $pdo->prepare($InsertAllCarQuery);
+     // Подготовка второго запроса
+     $stmt2 = $pdo->prepare($InsertThisAutoQuery);
 
-    // Обновление таблицы all_car
-    $stmt1->execute([
-        ':car_brand' => $data['brand'],
-        ':model' => $data['model'],
-        ':yeat_release' => $data['year_release'],
-        ':mileage' => $data['mileage'],
-        ':equipment' => $data['equipment'],
-        ':price' => $data['price'],
-        ':photo_front' => $data['price'], 
-        ':photo_back' => $data['price'], 
-    ]);
+     // Обновление таблицы this_auto
+     $stmt2->execute([
+         ':id_auto' => $lastId,
+         ':type_body' => $data['type_body'],
+         ':horsepower' => $data['horsepower'],
+         ':racing' => $data['racing'],
+         ':maximum_speed' => $data['maximum_speed'],
+         ':description' => $data['description'],
+         ':salon' => $data['salon'],
+         ':difference' => $data['difference'],
+         ':body_description' => $data['body_description'],
+         ':cost' => $data['price'],
+         ':photo_preview' => 'preview.jpg',
+         ':photo_salon' => 'salon.jpg',
+         ':general_view' => 'general_view.jpg',
+         ':sport' => 'sport.jpg'
+     ]);
+     
+     // Загрузка передних изображений
+     if (isset($_FILES['fileToUploadFront'])) {
+         foreach ($_FILES['fileToUploadFront']['tmp_name'] as $key => $tmpName) {
+             if ($_FILES['fileToUploadFront']['error'][$key] == UPLOAD_ERR_OK) {
+                 $targetFilePath = $basePathFront . '/' . basename($_FILES["fileToUploadFront"]["name"][$key]);
+                 
+                 if (!move_uploaded_file($tmpName, $targetFilePath)) {
+                     echo "Ошибка при загрузке переднего изображения " . $_FILES["fileToUploadFront"]["name"][$key] . ".";
+                 }
+             } else {
+                 echo "Ошибка при загрузке переднего изображения " . $_FILES["fileToUploadFront"]["name"][$key] . ".";
+             }
+         }
+     }
 
-    // Получаем последний вставленный ID из таблицы all_car
-    $lastId = $pdo->lastInsertId();
+     // Загрузка задних изображений
+     if (isset($_FILES['fileToUploadBack'])) {
+         foreach ($_FILES['fileToUploadBack']['tmp_name'] as $key => $tmpName) {
+             if ($_FILES['fileToUploadBack']['error'][$key] == UPLOAD_ERR_OK) {
+                 $targetFilePath = $fullPathBack . '/' . basename($_FILES["fileToUploadBack"]["name"][$key]);
+                 
+                 if (!move_uploaded_file($tmpName, $targetFilePath)) {
+                     echo "Ошибка при загрузке заднего изображения " . $_FILES["fileToUploadBack"]["name"][$key] . ".";
+                 }
+             } else {
+                 echo "Ошибка при загрузке заднего изображения " . $_FILES["fileToUploadBack"]["name"][$key] . ".";
+             }
+         }
+     }
 
-    // Подготовка второго запроса
-    $stmt2 = $pdo->prepare($InsertThisAutoQuery);
+     echo 1; // Успешное обновление и загрузка файлов
 
-    // Обновление таблицы this_auto
-    $stmt2->execute([
-        ':id_auto' => $lastId,
-        ':type_body' => $data['type_body'],
-        ':horsepower' => $data['horsepower'],
-        ':racing' => $data['racing'],
-        ':maximum_speed' => $data['maximum_speed'],
-        ':description' => $data['description'],
-        ':salon' => $data['salon'],
-        ':difference' => $data['difference'],
-        ':body_description' => $data['body_description'],
-        ':cost' => $data['price'],
-        ':photo_preview' => $data['price'],
-        ':photo_salon' => $data['price'],
-        ':general_view' => $data['price'],
-        ':sport' => $data['price']
-    ]);
-
-    echo 1; // Успешное обновление
 } catch (Exception $e) {
     echo "Ошибка: " . $e->getMessage();
 } catch (PDOException $e) {
