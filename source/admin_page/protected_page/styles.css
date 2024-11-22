@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: #3d3d3d;
+}
+
 .nav_btn{
     width: 100%;
     display: flex;
@@ -24,20 +28,26 @@
     align-items: top;
 
     margin-top: 90px;
- 
+    margin-bottom: 50px;
 }
 
 .container button{
-    width: 144px;
-    height: 30px;
+    width: 300px;
+    height: 50px;
     cursor: pointer;
+    border: 2px solid white;
+    border-radius: 20px;
+    font-size: 20px;
     float: right;
+    position: sticky;
+    top:75px;
 }
 
 table {
     border-collapse: collapse;
     border: 1px solid grey;
     float: right;
+    background-color: #c7c7c7;
 }
 
 td {
@@ -48,7 +58,7 @@ td {
 
 th {
     position: sticky; /* Делаем заголовок "липким" */
-    top: 0; /* Прикрепляем к верхней части контейнера */
+    top: 0px; /* Прикрепляем к верхней части контейнера */
     background-color: #f2f2f2; /* Цвет фона заголовка */
     z-index: 10; /* Обеспечивает, что заголовок будет выше других элементов */
     border-bottom: 2px solid #ccc; /* Добавляем нижнюю границу для отделения */
@@ -80,6 +90,21 @@ input{
     width: 600px;
     height: auto;
     min-height: 40px;
+    box-sizing: border-box;
+    resize: none;
+    overflow: hidden;
+    padding: 10px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 20px;
+    border-color: transparent;
+}
+
+
+.file_newCar{
+    width: 600px;
+    height: auto;
+    min-height: 40px;
     max-height: 200px;
     box-sizing: border-box;
     resize: none;
@@ -87,4 +112,37 @@ input{
     padding: 10px;
     margin: 10px;
     font-size: 18px;
+    color: white;
+}
+
+
+.modal_alert{
+    z-index: 12;
+    margin-top: 10%;
+    margin-left: 37%;
+    width: 500px;
+    height: 190px;
+    padding: 20px;
+    text-align: center;
+    background-color: antiquewhite;
+    border-radius: 20px;
+    position: fixed;
+}
+
+.btn_modal{
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modal_back{
+    background-color: #00000094;
+    position: fixed;
+    z-index: 11;
+    height: 100%;
+    width: 100%;
+    top: 0;
 }

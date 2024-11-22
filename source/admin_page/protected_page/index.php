@@ -34,6 +34,14 @@ if (isset($_SESSION['username'])) {
     <title>TimeAuto_Admin</title>
 </head>
 <body>
+<div class="modal_back" style="display:none;" id="modal_back"></div>
+<div class="modal_alert" style="display:none;" id="modal_alert">
+  <h1 style="color:red;">Внимание</h1>
+  <h3>Перед отправкой файлов на сервер, убедитесь что наименование и формат фотографий правильный. Это важно для работы сайта.</h3>
+  <button class="btn_modal" style="background-color: #00d300;" id="modal_confirm">Подтвердить</button>
+  <button class="btn_modal"  id="modal_back_btn">Отмена</button>
+</div>
+
 <div class="nav_btn">
   <button class="btn" type="submit" id="requests">Заявки</button>
   <button class="btn" type="submit" id="arenda">Аренда</button>
@@ -213,13 +221,13 @@ if (isset($_SESSION['username'])) {
         <textarea placeholder="отличия" class="input_newCar" id="difference" rows="3"></textarea>
         <textarea placeholder="описание кузова" class="input_newCar" id="body_description" rows="3"></textarea>
         <!-- Первые 2 изображения -->
-        <input class="input_newCar" type="file" name="fileToUploadFront[]" id="fileToUploadFront" accept="image/*" multiple required>
+        <input class="file_newCar" type="file" name="fileToUploadFront[]" id="fileToUploadFront" accept="image/*" multiple required>
         <!-- Остальные 4 изображения -->
-        <input class="input_newCar" type="file" name="fileToUploadBack[]" id="fileToUploadBack" accept="image/*" multiple required>
+        <input class="file_newCar" type="file" name="fileToUploadBack[]" id="fileToUploadBack" accept="image/*" multiple required>
         <button type="button" id="NewCar">Добавить машину</button>
     </div>
-
 </div>
+
   <script src="scripts.js"></script>
 </body>
 </html>

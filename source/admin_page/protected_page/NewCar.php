@@ -40,8 +40,8 @@ try {
          ':mileage' => $data['mileage'],
          ':equipment' => $data['equipment'],
          ':price' => $data['price'],
-         ':photo_front' => $data['brand'].'_'.$data['model'].'_front.jpg',
-         ':photo_back' => $data['brand'].'_'.$data['model'].'_back.jpg'
+         ':photo_front' => $data['brand'].'_'.$data['model'].'_front.webp',
+         ':photo_back' => $data['brand'].'_'.$data['model'].'_back.webp'
      ]);
   
      // Получаем последний вставленный ID из таблицы all_car
@@ -62,10 +62,10 @@ try {
          ':difference' => $data['difference'],
          ':body_description' => $data['body_description'],
          ':cost' => $data['price'],
-         ':photo_preview' => 'preview.jpg',
-         ':photo_salon' => 'salon.jpg',
-         ':general_view' => 'general_view.jpg',
-         ':sport' => 'sport.jpg'
+         ':photo_preview' => 'preview.webp',
+         ':photo_salon' => 'salon.webp',
+         ':general_view' => 'general_view.webp',
+         ':sport' => 'sport.webp'
      ]);
      
      // Загрузка передних изображений

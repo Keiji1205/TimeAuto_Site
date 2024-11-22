@@ -325,8 +325,23 @@ document.getElementById("confirm_edit").onclick = function() {
   });
 }
 
+document.getElementById('NewCar').addEventListener('click', function(){
+  document.getElementById('modal_alert').style.display="block";
+  document.getElementById('modal_back').style.display="block";
+})
 
-document.getElementById('NewCar').addEventListener('click', function() {
+
+document.getElementById('modal_back_btn').addEventListener('click', function(){
+  document.getElementById('modal_alert').style.display="none";
+  document.getElementById('modal_back').style.display="none";
+})
+
+document.getElementById('modal_back').addEventListener('click', function(){
+  document.getElementById('modal_alert').style.display="none";
+  document.getElementById('modal_back').style.display="none";
+})
+
+document.getElementById('modal_confirm').addEventListener('click', function() {
   const carData = {
       brand: document.getElementById('car_brand').value.trim(),
       model: document.getElementById('model').value.trim(),
