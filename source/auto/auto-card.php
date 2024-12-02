@@ -5,7 +5,7 @@ function getAutosFromDatabase() {
     include '../db.php';
 
     // Запрос к базе данных
-    $sql = "SELECT * FROM all_car";
+    $sql = "SELECT * FROM all_car WHERE status = 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 

@@ -6,17 +6,17 @@
   $sql = "SELECT password FROM users WHERE username = :username";
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':username', $_POST['username']);
-  $password = $_POST['password']; // Get password from the form
+  $password = $_POST['password']; // Получаем пароль без формы
   $stmt->execute();
 
   $hashedPassword = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  // Compare hashes
+  // Проверяем хэш
   if (isset($hashedPassword['password']) && $hashedPassword['password'] == hash('sha512', $password)) { 
-      // Passwords match, set session and send success response
-      $_SESSION['username'] = $_POST['username']; // Store the username in the session
+      // пароль сходится, открываем сессию и передаем сообщение
+      $_SESSION['username'] = $_POST['username']; // 
       echo json_encode(['success' => true]);
   } else {
-      // Passwords don't match, send failure response
+      // пароль не сходится отправлем ошибку
       echo json_encode(['success' => false, 'message' => 'Неправильный пароль!']);
   }

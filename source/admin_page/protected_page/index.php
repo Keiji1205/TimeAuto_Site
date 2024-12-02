@@ -173,6 +173,7 @@ if (isset($_SESSION['username'])) {
         <th>Салон</th>
         <th>Отличия</th>
         <th>Описание кузова</th>
+        <th>Статус</th>
         <th>Выбор заявки</th>
       </tr>
       <?php
@@ -197,6 +198,7 @@ if (isset($_SESSION['username'])) {
               echo "<td>".$row_car["salon"]."</td>";
               echo "<td>".$row_car["difference"]."</td>";
               echo "<td>".$row_car["body_description"]."</td>";
+              echo "<td>".$row_car["status"]."</td>";
               echo "<td><input type='radio' name='selected_rows[]'></td>";
             echo "</tr>";      
             }

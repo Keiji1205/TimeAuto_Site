@@ -13,7 +13,8 @@ try {
         yeat_release = :year_release,
         mileage = :mileage,
         equipment = :equipment,
-        price = :price 
+        price = :price,
+        status = :status
         WHERE id = :id";
 
     $updateThisAutoQuery = "UPDATE this_auto SET 
@@ -24,8 +25,7 @@ try {
         description = :description,
         salon = :salon,
         difference = :difference,
-        body_description = :body_description,
-        cost = :cost 
+        body_description = :body_description
         WHERE id_auto = :id_auto"; // Исправлено имя параметра
 
     // Подготовка запросов
@@ -41,6 +41,7 @@ try {
             ':mileage' => $row['mileage'],
             ':equipment' => $row['equipment'],
             ':price' => $row['price'],
+            ':status' => $row['status'],
             ':id' => $row['id']
         ]);
 
@@ -54,7 +55,6 @@ try {
             ':salon' => $row['salon'],
             ':difference' => $row['difference'],
             ':body_description' => $row['body_description'],
-            ':cost' => $row['price'], // Предполагается, что цена совпадает с ценой в all_car
             ':id_auto' => $row['id']  // Используем тот же ID для связи между таблицами
         ]);
     }

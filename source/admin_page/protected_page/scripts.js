@@ -277,7 +277,8 @@ const columnMapping = [
   'description',
   'salon',
   'difference',
-  'body_description'
+  'body_description',
+  'status'
 ];
 
 // Обработчик для кнопки "Подтвердить"
